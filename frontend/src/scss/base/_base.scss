@@ -1,0 +1,104 @@
+:root {
+  --measure: 120ch;
+  --ratio: 1.5;
+  --s-5: calc(var(--s-4) / var(--ratio));
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  margin: 0;
+  color: $color-primary;
+  background: $color-background;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: var(--s1);
+
+  // Remove margin for div that gatsby mounts into.
+  > div {
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: darken($color-primary, 30%);
+    line-height: var(--s3);
+  }
+
+  h1 {
+    font-size: var(--s3);
+  }
+
+  h2 {
+    font-size: var(--s2);
+  }
+
+  h3 {
+    font-size: var(--s1);
+  }
+
+  h4 {
+    font-size: var(--s0);
+  }
+
+  h5 {
+    font-size: var(--s0);
+  }
+
+  h6 {
+    font-size: var(--s0);
+  }
+
+  strong {
+    color: darken($color-primary, 30%);
+  }
+
+  li {
+    margin-top: var(--s2);
+  }
+
+  a {
+    color: $color-secondary;
+    text-decoration: none;
+  }
+
+  p + p {
+    margin-top: 1rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: $color-primary-dm;
+    background: $color-background-dm;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: darken($color-primary-dm, 30%);
+    }
+    strong {
+      color: darken($color-primary-dm, 30%);
+    }
+
+  }
+}

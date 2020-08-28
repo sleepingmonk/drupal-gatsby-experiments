@@ -1,0 +1,71 @@
+# Rename this file to .lando.yml to use, or delete if you already have one.
+# Named start.lando.yml to not conflict with projects installed with lando mw install.
+
+# project_code: cmm, apb_d7, etc.
+name: headless
+
+# drupal8
+recipe: drupal8
+
+config:
+  # default: web | lightning: docroot
+  webroot: backend/web
+  php: '7.2'
+
+proxy:
+  appserver:
+    # Drupal
+    - backend.lndo.site
+  nodejs:
+    # Gatsby Development
+    - head.lndo.site:8000
+    # Gatsby Serve(d) build.
+    - shead.lndo.site:9000
+
+
+  # Optionally activate xdebug
+  #
+  # If you are having trouble getting xdebug to work please see:
+  # https://docs.devwithlando.io/services/php.html#using-xdebug
+  # xdebug: true
+
+# Additional services and features.
+services:
+  appserver:
+    run:
+      - /bin/sh -c "cd /app/backend; composer install"
+      - /bin/sh -c "cd /app/backend/web; drush --root=/app/backend/web site-install standard --site-name=headless-drupal --db-url=mysql://drupal8:drupal8@database/drupal8 -y"
+      - /bin/sh -c "cd /app/backend/web; drush --root=/app/backend/web en jsonapi jsonapi_extras devel devel_generate serialization jwt jwt_auth_consumer jwt_auth_issuer getjwtonlogin -y"
+
+  nodejs:
+    type: node
+    # Needed port to make Gatsby work at head.lndo.site
+    port: 8000
+    globals:
+      gatsby-cli: latest
+    build:
+      - /bin/sh -c "cd /app/frontend; npm install"
+
+# Custom Lando commands
+tooling:
+  build:
+    service: appserver
+    description: "Build the project. \n  -c Clean build. \n  -l (live) Build production code. composer install --no-dev \n -t Theme build \n  -w Run theme watcher \n  -y Confirm prompts."
+    cmd:
+      - /app/backend/scripts/build.sh
+  build:reset:
+    service: appserver
+    description: "Run local-dev script. (updb, cim, cr, uli)"
+    cmd:
+      - /app/backend/scripts/reset.sh
+  node:
+    service: nodejs
+  npm:
+    service: nodejs
+  gatsby:
+    service: nodejs
+  yarn:
+    service: nodejs
+  front:dev:
+    service: nodejs
+    cmd: /bin/sh -c "cd /app/frontend && npm run develop"
