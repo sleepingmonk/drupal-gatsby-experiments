@@ -1,22 +1,22 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
-import ReadLink from '../components/read-link';
-import Picture from '../components/picture';
+import Image from '../components/image';
 
 export const query = graphql`
 query($id: String!) {
   drupal {
     nodeById(id: $id) {
       ... on Drupal_NodeArticle {
-        entityLabel
-        entityOwner {
-          entityLabel
+        title: entityLabel
+        author: entityOwner {
+          authorName: entityLabel
         }
         body {
           processed
         }
         fieldImage {
+          alt
           xxl: derivative (style: XXL) {
             width
             url
@@ -44,17 +44,18 @@ query($id: String!) {
 }`
 
 const ArticleTemplate = ({ data: { drupal: { nodeById: article } }}) => {
+
   return (
     <Layout>
       <div className="article">
-        <h1>{article.entityLabel}</h1>
-        <p className="author">Posted by {article.entityOwner.entityLabel}</p>
-        <Picture
+        <h1>{article.title}</h1>
+        <p className="author">Posted by {article.author.authorName}</p>
+        <Image
           image={article.fieldImage}
           sizes="90vw"
         />
         <div dangerouslySetInnerHTML={{ __html: article.body.processed}}></div>
-        <ReadLink to='/'>&larr; Back  to all articles</ReadLink>
+        <Link to='/'>&larr; Back  to all articles</Link>
       </div>
     </Layout>
   );

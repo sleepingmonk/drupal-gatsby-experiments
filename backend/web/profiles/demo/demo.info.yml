@@ -1,0 +1,52 @@
+name: Demo
+type: profile
+description: 'Build a custom site without pre-configured functionality. Suitable for advanced users.'
+version: VERSION
+core: 8.x
+install:
+  - admin_toolbar
+  - admin_toolbar_tools
+  - block
+  - block_content
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - datetime
+  - dblog
+  - devel
+  - devel_generate
+  - editor
+  - field
+  - field_ui
+  - file
+  - filter
+  - graphql
+  - graphql_core
+  - help
+  - history
+  - image
+  - jsonapi
+  - jsonapi_extras
+  - jsonapi_image_styles
+  - link
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - path
+  - path_alias
+  - pathauto
+  - serialization
+  - system
+  - taxonomy
+  - text
+  - toolbar
+  - tour
+  - user
+  - views
+  - views_ui
+
+themes:
+  - bartik
+  - gin

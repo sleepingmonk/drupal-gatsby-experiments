@@ -34,6 +34,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
+      drupalPage: allNodePage {
+        edges {
+          node {
+            id
+            path {
+              alias
+            }
+          }
+        }
+      }
     }
   `);
 
@@ -64,4 +74,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     });
   });
+
+  const pages = result.data.drupalPage.edges;
+
+  pages.forEach(page => {
+    actions.createPage({
+      path: page.node.path.alias,
+      component: require.resolve('./src/templates/page.js'),
+      context: {
+        id: page.node.id,
+      },
+    });
+  });
+
 }

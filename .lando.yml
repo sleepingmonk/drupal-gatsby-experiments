@@ -10,7 +10,7 @@ recipe: drupal8
 config:
   # default: web | lightning: docroot
   webroot: backend/web
-  php: '7.2'
+  php: '7.3'
 
 proxy:
   appserver:
@@ -33,18 +33,18 @@ proxy:
 services:
   appserver:
     run:
+      - /bin/sh -c "mkdir -p /app/backend/data/tmp"
       - /bin/sh -c "cd /app/backend; composer install"
-      - /bin/sh -c "cd /app/backend/web; drush --root=/app/backend/web site-install standard --site-name=headless-drupal --db-url=mysql://drupal8:drupal8@database/drupal8 -y"
-      - /bin/sh -c "cd /app/backend/web; drush --root=/app/backend/web en jsonapi jsonapi_extras devel devel_generate serialization jwt jwt_auth_consumer jwt_auth_issuer getjwtonlogin -y"
-
+      - /bin/sh -c "cd /app/backend/web; drush --root=/app/backend/web site-install demo --site-name=headless-drupal --db-url=mysql://drupal8:drupal8@database/drupal8 -y; drush genc 20 0 --bundles=page,article;"
   nodejs:
     type: node
     # Needed port to make Gatsby work at head.lndo.site
     port: 8000
     globals:
       gatsby-cli: latest
-    build:
+    run:
       - /bin/sh -c "cd /app/frontend; npm install"
+      - /bin/sh -c "cd /app/frontend; npm run develop"
 
 # Custom Lando commands
 tooling:
@@ -61,6 +61,8 @@ tooling:
   node:
     service: nodejs
   npm:
+    service: nodejs
+  npx:
     service: nodejs
   gatsby:
     service: nodejs

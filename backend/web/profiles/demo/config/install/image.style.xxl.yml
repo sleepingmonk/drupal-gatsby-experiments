@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: xxl
+label: 'XXL (2400)'
+effects:
+  885794ab-2b64-4367-a1d1-57257249734b:
+    uuid: 885794ab-2b64-4367-a1d1-57257249734b
+    id: image_scale
+    weight: 1
+    data:
+      width: 2400
+      height: null
+      upscale: false

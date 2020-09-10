@@ -12,3 +12,5 @@ const Wave = () => {
 };
 
 export default Wave;
+
+export { Wave };

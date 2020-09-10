@@ -11,7 +11,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve --host 0.0.0.0",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "analyze": "ANALYZE_BUNDLE_SIZE=true gatsby build"
+    "analyze": "ANALYZE_BUNDLE_SIZE=true gatsby build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.4",
@@ -31,6 +33,7 @@
     "gatsby-plugin-sharp": "^2.6.27",
     "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-remark-images": "^3.3.25",
+    "gatsby-source-drupal": "^3.5.30",
     "gatsby-source-filesystem": "^2.3.24",
     "gatsby-source-graphql": "^2.7.1",
     "gatsby-transformer-sharp": "^2.5.13",
@@ -42,8 +45,15 @@
     "typescript": "^2.9.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
     "cross-env": "^6.0.3",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-is": "^16.13.1"
   },
   "repository": {
     "type": "git",

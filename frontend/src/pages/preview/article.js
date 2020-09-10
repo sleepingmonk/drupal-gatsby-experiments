@@ -4,7 +4,7 @@ import Layout from '../../components/layout';
 import Picture from '../../components/picture';
 import ReadLink from '../../components/read-link';
 
-import { useQuery, ApolloClient, ApolloProvider } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
 // This query is executed at run time by Apollo.
@@ -50,12 +50,9 @@ const ArticleTemplate = () => {
 
   const id = window.location ? queryString.parse(window.location.search).nid : null;
 
-
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { id },
   });
-
-  const hasResults = data && (data.nodeById || []).length > 0;
 
   return (
     <Layout>

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: xl
+label: 'XL (1800)'
+effects:
+  ba859f5d-2087-4366-9521-279b7ebe1da2:
+    uuid: ba859f5d-2087-4366-9521-279b7ebe1da2
+    id: image_scale
+    weight: 1
+    data:
+      width: 1800
+      height: null
+      upscale: false

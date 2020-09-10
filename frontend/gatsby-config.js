@@ -41,6 +41,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-drupal`,
+      options: {
+        baseUrl: `http://backend.lndo.site/`,
+        apiBase: `jsonapi`, // optional, defaults to `jsonapi`
+        skipFileDownloads: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-webpack-bundle-analyzer',
       options: {
         production: true,

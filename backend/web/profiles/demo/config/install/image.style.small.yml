@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: small
+label: 'Small (300)'
+effects:
+  4df6cba1-7f9f-49d7-bcd1-58cbb5365554:
+    uuid: 4df6cba1-7f9f-49d7-bcd1-58cbb5365554
+    id: image_scale
+    weight: 1
+    data:
+      width: 300
+      height: null
+      upscale: false
